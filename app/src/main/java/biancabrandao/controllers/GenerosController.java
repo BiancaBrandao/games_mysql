@@ -21,13 +21,13 @@ public class GenerosController {
 
     @RequestMapping("list")
     public String list(Model model) {
-        model.addAttribute("generos", generosRepo.findAll());
-        return "/generos/list";
+        model.addAttribute("generos", this.generosRepo.findAll());
+        return "list";
     }
 
     @RequestMapping("insert")
     public String insert() {
-        return "/generos/insert";
+        return "insert";
     }
 
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class GenerosController {
         }
 
         @RequestMapping(value = "delete", method = RequestMethod.POST)
-        public String delete(@RequestParam("id") int id) {
+        public String saveDelete(@RequestParam("id") int id) {
             generosRepo.deleteById(id);
             return "redirect:/generos/list";
         }
